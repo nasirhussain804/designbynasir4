@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Design system tokens - "dark studio at 1 a.m." brand for Design by Nasir.
+ * Deep charcoal surfaces, sodium-orange brand accent. Every semantic colour is
+ * an HSL channel triplet consumed by tailwind.config.js (bg-primary,
+ * text-foreground, border-border, ...). Change these values to re-brand the
+ * whole site - never hardcode literal colours in components.
+ */
+@layer base {
+  :root {
+    --background: 37 47% 95%;
+    --foreground: 26 23% 7%;
+    --card: 37 75% 98%;
+    --card-foreground: 26 23% 7%;
+    --popover: 37 75% 98%;
+    --popover-foreground: 26 23% 7%;
+    --primary: 26 100% 42%;
+    --primary-foreground: 37 46% 98%;
+    --secondary: 34 31% 89%;
+    --secondary-foreground: 26 19% 8%;
+    --muted: 34 29% 91%;
+    --muted-foreground: 29 12% 33%;
+    --accent: 32 43% 87%;
+    --accent-foreground: 26 19% 8%;
+    --destructive: 357 100% 45%;
+    --destructive-foreground: 37 46% 98%;
+    --border: 31 18% 81%;
+    --input: 31 18% 81%;
+    --ring: 26 100% 42%;
+    --radius: 0.5rem;
+    --font-sans: 'Space Grotesk';
+    --font-display: 'Syne';
+  }
+
+  .dark {
+    --background: 31 27% 4%;
+    --foreground: 37 25% 91%;
+    --card: 32 21% 7%;
+    --card-foreground: 37 25% 91%;
+    --popover: 32 21% 7%;
+    --popover-foreground: 37 25% 91%;
+    --primary: 29 100% 49%;
+    --primary-foreground: 26 29% 5%;
+    --secondary: 32 19% 10%;
+    --secondary-foreground: 37 19% 89%;
+    --muted: 31 15% 8%;
+    --muted-foreground: 31 7% 53%;
+    --accent: 29 21% 12%;
+    --accent-foreground: 37 25% 91%;
+    --destructive: 1 84% 56%;
+    --destructive-foreground: 37 25% 91%;
+    --border: 31 11% 15%;
+    --input: 31 11% 15%;
+    --ring: 29 100% 49%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  /* Mono eyebrow / index / caption face - JetBrains Mono. */
+  .font-code {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-feature-settings: 'tnum' 1;
+  }
+
+  /* Display wordmark face. */
+  .font-wordmark {
+    font-family: 'Syne', var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+  }
+
+  /* Capabilities band marquee - one track, duplicated inline, loops -50%. */
+  .animate-band {
+    animation: band-scroll 28s linear infinite;
+  }
+  .animate-band:hover {
+    animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .animate-band {
+      animation: none;
+    }
+  }
+}
+
+@keyframes band-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
